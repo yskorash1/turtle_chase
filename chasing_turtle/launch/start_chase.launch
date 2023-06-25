@@ -1,0 +1,17 @@
+<launch>
+
+    <node pkg="turtlesim" type="turtle_teleop_key" name="turtle_teleop_key"/>  
+    
+    <node pkg="turtlesim" type="turtlesim_node" name="turtlesim"/>
+    
+    <node pkg="rosservice" type="rosservice" name="turtle" args="call /spawn 0.0 0.0 0.0 turtle2"/>
+
+    <node pkg="chasing_turtle" type="turtlemove" name="turtlemove">
+               <param name="X_velocity" type="int" value="10"/>
+               <remap from="cmd_vel" to="turtle2/cmd_vel"/>
+               <remap from="pose" to="turtle2/pose"/>
+               <remap from="goal" to="turtle1/pose"/>
+    </node>
+
+
+</launch>
